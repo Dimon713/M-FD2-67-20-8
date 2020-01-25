@@ -1,6 +1,6 @@
 let userSurname = prompt('Введите Вашу Фамилию')
 let userName = prompt('Введите Ваше Имя');
-let userFatherName = prompt('Введите Ваше Отчество');
+let userMiddleName = prompt('Введите Ваше Отчество');
 
 let userBirthdayYear;
 do {
@@ -42,7 +42,7 @@ if (userChildren === 0) {
     userChildren = 'нет'
 }
 
-let result = `Вы ${userSurname} ${userName} ${userFatherName}
+let result = `Вы ${userSurname} ${userName} ${userMiddleName}
 Вам ${userFullYear} лет и ${userFullMonth} месяцев
 Ваш пол ${userGender}
 Вы ${user18}

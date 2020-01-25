@@ -1,6 +1,11 @@
 function solveEquation(a, b, c) {
+    let result;
+    let D = b ** 2 - 4 * a * c;
 
-    D = b ** 2 - 4 * a * c;
+    if (!a) {
+        result = 'Число "а" не может быть равно 0. Измените число "а" и попробуйте заново';
+        return result;
+    }
 
     if (D > 0) {
         x1 = ((-b + D ** 0.5) / (2 * a)).toFixed(5);
@@ -24,5 +29,7 @@ x=${x}`;
     return result;
 }
 
-solveEquation(a = prompt('Введите значение а'), b = prompt('Введите значение b'), c = prompt('Введите значение c'));
-console.log(result);
+let a = Number(prompt('Введите значение а'));
+let b = Number(prompt('Введите значение b'));
+let c = Number(prompt('Введите значение c'));
+console.log(solveEquation(a, b, c));
