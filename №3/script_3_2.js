@@ -8,8 +8,7 @@ function getArrayMax(array) {
     return maxArray;
 }
 
-let data = [12, 4, 7, 5, 2, 10, 44, 55, 53, 78];
-console.log(getArrayMax(data));
+console.log(getArrayMax([12, 4, 7, 5, 2, 10, 44, 55, 53, 88]));
 
 
 function getMax(a) {
