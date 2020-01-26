@@ -5,15 +5,12 @@ function solveEquation(a, b, c) {
     if (!a) {
         return result;
     } else if (D > 0) {
-        x1 = ((-b + D ** 0.5) / (2 * a)).toFixed(3);
-        x2 = ((-b - D ** 0.5) / (2 * a)).toFixed(3);
-        result[4] = x1;
-        result[5] = x2;
+        result[4] = ((-b + D ** 0.5) / (2 * a)).toFixed(3);
+        result[5] = ((-b - D ** 0.5) / (2 * a)).toFixed(3);
     } else if (D < 0) {
         result[4] = undefined;
     } else {
-        x = -b / (2 * a);
-        result[4] = x;
+        result[4] = -b / (2 * a);
     }
     result[0] = D;
     result[1] = a;
