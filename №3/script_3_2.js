@@ -11,7 +11,7 @@ function getArrayMax(array) {
 console.log(getArrayMax([12, 4, 7, 5, 2, 10, 44, 55, 53, 88]));
 
 
-function getMax(a) {
+function getMax() {
     let max = arguments[0];
     for (i = 1; i <= arguments.length; i++) {
         if (max < arguments[i]) {
