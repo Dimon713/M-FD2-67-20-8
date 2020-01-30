@@ -11,7 +11,6 @@ function qeepEqual(a, b) {
         return false
     }
 
-
     for (let key in a) {
         key = key;
         if (key in b && a[key] === b[key]) {
