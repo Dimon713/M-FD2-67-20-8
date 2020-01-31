@@ -13,6 +13,8 @@ function qeepEqual(a, b) {
             continue
         } else if (key in b && typeof a[key] === 'null' && typeof b[key] === 'null') {
             continue
+        } else if (key in b && typeof a[key] === 'undefined' && typeof b[key] === 'undefined') {
+            continue
         } else {
             return false
         }
@@ -22,7 +24,7 @@ function qeepEqual(a, b) {
 
 let x = {
     value: {
-        a: 13
+        a: undefined
     },
     b: 'abc',
     c: (n) => n * 2,
@@ -31,7 +33,7 @@ let x = {
 
 let y = {
     value: {
-        a: 13
+        a: undefined
     },
     b: 'abc',
     c: (n) => n * 2,
