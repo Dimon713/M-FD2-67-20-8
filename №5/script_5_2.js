@@ -3,8 +3,8 @@ function qeepEqual(a, b) {
         return false
     }
 
-    for (let key in a) {
-        key = key;
+    for (let data in a) {
+        let key = data;
         if (key in b && a[key] === b[key]) {
             continue;
         } else if (key in b && typeof a[key] === 'object' && typeof b[key] === 'object' && qeepEqual(a[key], b[key])) {
