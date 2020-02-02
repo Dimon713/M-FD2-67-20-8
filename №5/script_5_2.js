@@ -5,16 +5,10 @@ function qeepEqual(a, b) {
 
     for (let data in a) {
         let key = data;
-        if (key in b && a[key] === b[key]) {
+        if (key in b && typeof a[key] === typeof b[key] && a[key] === b[key]) {
             continue;
-        } else if (key in b && typeof a[key] === 'object' && typeof b[key] === 'object' && qeepEqual(a[key], b[key])) {
+        } else if (typeof a[key] === 'object' && typeof b[key] === 'object' && qeepEqual(a[key], b[key])) {
             continue;
-        } else if (key in b && typeof a[key] === 'function' && typeof b[key] === 'function' && a[key].toString() === b[key].toString()) {
-            continue
-        } else if (key in b && typeof a[key] === 'null' && typeof b[key] === 'null') {
-            continue
-        } else if (key in b && typeof a[key] === 'undefined' && typeof b[key] === 'undefined') {
-            continue
         } else {
             return false
         }
@@ -22,22 +16,34 @@ function qeepEqual(a, b) {
     return true
 }
 
+
+
 let x = {
     value: {
-        a: undefined
+        a: undefined,
     },
     b: 'abc',
-    c: (n) => n * 2,
+    c: bbb(2),
     d: null,
+    e: [1, 2, [1, 2]],
 };
 
 let y = {
     value: {
-        a: undefined
+        a: undefined,
     },
     b: 'abc',
-    c: (n) => n * 2,
+    c: bbb(2),
     d: null,
+    e: [1, 2, [1, 2]],
 };
 
 console.log(qeepEqual(x, y));
+console.log(qeepEqual([1, 2, [1, 2]], [1, 2, [1, 2, 3]]));
+
+
+
+function bbb(x) {
+
+    return x
+}
