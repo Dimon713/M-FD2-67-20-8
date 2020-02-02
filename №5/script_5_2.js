@@ -1,4 +1,6 @@
 function qeepEqual(a, b) {
+    if (a === b) return true;
+
     if (Object.keys(a).length !== Object.keys(b).length) {
         return false
     }
