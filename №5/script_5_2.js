@@ -15,7 +15,7 @@ function qeepEqual(a, b) {
             return false;
         }
     }
-    return true
+    return true;
 }
 
 
