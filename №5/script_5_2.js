@@ -47,5 +47,5 @@ console.log(qeepEqual([1, 2, [1, 2]], [1, 2, [1, 2, 3]]));
 
 function bbb(x) {
 
-    return x
+    return x;
 }
