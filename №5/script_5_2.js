@@ -2,7 +2,7 @@ function qeepEqual(a, b) {
     if (a === b) return true;
 
     if (Object.keys(a).length !== Object.keys(b).length) {
-        return false
+        return false;
     }
 
     for (let data in a) {
@@ -12,7 +12,7 @@ function qeepEqual(a, b) {
         } else if (typeof a[key] === 'object' && typeof b[key] === 'object' && qeepEqual(a[key], b[key])) {
             continue;
         } else {
-            return false
+            return false;
         }
     }
     return true
