@@ -11,7 +11,7 @@ function info(gender, status, n) {
 function myBind(func, context, ...arg1) {
 
     return function(...arg2) {
-        func.apply(context, arg1.concat(arg2));
+        return func.apply(context, arg1.concat(arg2));
     }
 }
 
