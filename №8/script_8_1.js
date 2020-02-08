@@ -10,7 +10,7 @@ function HashStorageFunc() {
     }
 
     this.deleteValue = function(key) {
-        if (this.dataBase[key]) {
+        if (key in this.dataBase) {
             delete this.dataBase[key];
             return true;
         } else {
