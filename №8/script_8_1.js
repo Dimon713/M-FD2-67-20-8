@@ -1,17 +1,17 @@
 function HashStorageFunc() {
-    this.dataBase = {};
+    let dataBase = {};
 
     this.addValue = function(key, value) {
-        this.dataBase[key] = value;
+        dataBase[key] = value;
     }
 
     this.getValue = function(key) {
-        return this.dataBase[key];
+        return dataBase[key];
     }
 
     this.deleteValue = function(key) {
-        if (key in this.dataBase) {
-            delete this.dataBase[key];
+        if (key in dataBase) {
+            delete dataBase[key];
             return true;
         } else {
             return false
@@ -19,7 +19,7 @@ function HashStorageFunc() {
     }
 
     this.getKeys = function() {
-        return Object.keys(this.dataBase);
+        return Object.keys(dataBase);
     }
 }
 
