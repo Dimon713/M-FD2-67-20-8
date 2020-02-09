@@ -23,7 +23,7 @@ function HashStorageFunc() {
     }
 }
 
-function Country() {
+function AddClassA() {
     HashStorageFunc.call(this);
 
     this.getCapital = function(key) {
@@ -47,7 +47,7 @@ function Country() {
 
 }
 
-let country = new Country();
+let country = new AddClassA();
 
 country.addValue('Германия', 'Берлин', );
 country.addValue('Беларусь', 'Минск', );
@@ -55,7 +55,7 @@ country.addValue('Россия', 'Москва', );
 
 
 
-function Students() {
+function AddClassB() {
     HashStorageFunc.call(this);
 
     this.getPieses = function() {
@@ -79,7 +79,7 @@ function Students() {
     }
 }
 
-let students = new Students();
+let students = new AddClassB();
 
 students.addValue('Иванов', 'М', );
 students.addValue('Петров', 'М', );
