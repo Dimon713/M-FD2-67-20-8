@@ -48,10 +48,6 @@ country.addValue('Россия', 'Москва', );
 function Students() {
     HashStorageFunc.call(this);
 
-    this.getInfo = function(key) {
-        console.log(`Студент: ${key}. Пол - ${this._dataBase[key]}`);
-    }
-
     this.getPiecesGenger = function(value) {
         let n = 0;
         for (let key in this._dataBase) {
