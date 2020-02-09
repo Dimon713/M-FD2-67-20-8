@@ -31,6 +31,10 @@ function Country() {
         return info;
     }
 
+    this.deleteAll = function() {
+        return this._dataBase = {};
+    }
+
     let parentEnable = this.getKeys;
     this.getKeys = function() {
         parentEnable.call(this);
