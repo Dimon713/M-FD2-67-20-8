@@ -26,14 +26,19 @@ function HashStorageFunc() {
 function Country() {
     HashStorageFunc.call(this);
 
-    this.geInfo = function(key) {
-        console.log(`Страна: ${key}. Столица - ${this._dataBase[key]}`);
+    this.getCapital = function(key) {
+        let info = [key, this._dataBase[key]]
+        return info;
     }
 
     let parentEnable = this.getKeys;
     this.getKeys = function() {
         parentEnable.call(this);
-        console.log(`Выберите страну из списка: ${Object.keys(this._dataBase)}.`);
+        let n = 0;
+        for (let key in this._dataBase) {
+            n++;
+        }
+        return Object.keys(this._dataBase).concat(n);
     }
 
 }
@@ -45,32 +50,28 @@ country.addValue('Беларусь', 'Минск', );
 country.addValue('Россия', 'Москва', );
 
 
+
 function Students() {
     HashStorageFunc.call(this);
 
-    this.getPiecesGenger = function(value) {
+    this.getPieses = function() {
+        let n = 0;
+        for (let key in this._dataBase) {
+            n++;
+        }
+        return n;
+    }
+
+    let parentEnable = this.getKeys;
+    this.getPiesesKeys = function(value) {
+        parentEnable.call(this);
         let n = 0;
         for (let key in this._dataBase) {
             if (this._dataBase[key] === value) {
                 n++;
             }
         }
-        if (value === 'Ж') {
-            console.log(`Количество девушек: ${n}`);
-        } else {
-            console.log(`Количество парней: ${n}`);
-        }
-    }
-
-    let parentEnable = this.getKeys;
-    this.getKeys = function() {
-        parentEnable.call(this);
-        let n = 0;
-        for (let key in this._dataBase) {
-            n++;
-        }
-        console.log(`Общий список группы: ${Object.keys(this._dataBase)}.
-Количество людей в группе ${n}`);
+        return n;
     }
 }
 
