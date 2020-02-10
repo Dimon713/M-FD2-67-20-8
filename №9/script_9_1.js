@@ -27,8 +27,7 @@ function AddClassA() {
     HashStorageFunc.call(this);
 
     this.getCapital = function(key) {
-        let info = [key, this._dataBase[key]]
-        return info;
+        return [key, this._dataBase[key]];
     }
 
     this.deleteAll = function() {
