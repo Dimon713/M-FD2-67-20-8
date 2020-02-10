@@ -66,7 +66,7 @@ function AddClassB() {
     }
 
     let parentGetKeys = this.getKeys;
-    this.getPiesesKeys = function(value) {
+    this.getKeys = function(value) {
         parentGetKeys.call(this);
         let n = 0;
         for (let key in this._dataBase) {
