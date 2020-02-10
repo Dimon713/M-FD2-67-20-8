@@ -34,9 +34,9 @@ function AddClassA() {
         return this._dataBase = {};
     }
 
-    let parentEnable = this.getKeys;
+    let parentGetKeys = this.getKeys;
     this.getKeys = function() {
-        parentEnable.call(this);
+        parentGetKeys.call(this);
         let n = 0;
         for (let key in this._dataBase) {
             n++;
@@ -65,9 +65,9 @@ function AddClassB() {
         return n;
     }
 
-    let parentEnable = this.getKeys;
+    let parentGetKeys = this.getKeys;
     this.getPiesesKeys = function(value) {
-        parentEnable.call(this);
+        parentGetKeys.call(this);
         let n = 0;
         for (let key in this._dataBase) {
             if (this._dataBase[key] === value) {
