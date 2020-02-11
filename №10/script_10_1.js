@@ -12,7 +12,7 @@ HashStorageFunc.prototype.getValue = function(key) {
 
 HashStorageFunc.prototype.deleteValue = function(key) {
     if (key in this._dataBase) {
-        delete this._dataBase[key];
+        delete this._dataBase[key]
         return true;
     } else {
         return false;

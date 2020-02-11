@@ -3,15 +3,15 @@ class HashStorageFunc {
         this._dataBase = {};
     }
 
-    addValue = function(key, value) {
+    addValue(key, value) {
         this._dataBase[key] = value;
     }
 
-    getValue = function(key) {
+    getValue(key) {
         return this._dataBase[key];
     }
 
-    deleteValue = function(key) {
+    deleteValue(key) {
         if (key in this._dataBase) {
             delete this._dataBase[key];
             return true;
@@ -20,18 +20,18 @@ class HashStorageFunc {
         }
     }
 
-    getKeys = function() {
+    getKeys() {
         return Object.keys(this._dataBase);
     }
 
-    getPieses = function() {
+    getPieses() {
         let n = 0;
         for (let key in this._dataBase) {
             n++;
         }
         return n;
     }
-    deleteAll = function() {
+    deleteAll() {
         return this._dataBase = {};
     }
 }
@@ -41,7 +41,7 @@ class Students extends HashStorageFunc {
         super();
     }
 
-    getKeys = function(value) {
+    getKeys(value) {
         let n = 0;
         for (let key in this._dataBase) {
             if (this._dataBase[key] === value) {
@@ -50,7 +50,6 @@ class Students extends HashStorageFunc {
         }
         return n;
     }
-
 }
 
 let students = new Students();
