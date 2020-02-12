@@ -23,21 +23,15 @@ HashStorageFunc.prototype.getKeys = function() {
     return Object.keys(this._dataBase);
 }
 
-HashStorageFunc.prototype.getCapital = function(key) {
-    return [key, this._dataBase[key]];
-}
 
-HashStorageFunc.prototype.deleteAll = function() {
-    return this._dataBase = {};
-}
 
-function Country() {
+function AddClassA() {
     HashStorageFunc.apply(this, arguments);
 }
 
-Country.prototype = Object.create(HashStorageFunc.prototype);
+AddClassA.prototype = Object.create(HashStorageFunc.prototype);
 
-Country.prototype.getKeys = function() {
+AddClassA.prototype.getKeys = function() {
     HashStorageFunc.prototype.getKeys.call(this);
     let n = 0;
     for (let key in this._dataBase) {
@@ -46,8 +40,49 @@ Country.prototype.getKeys = function() {
     return Object.keys(this._dataBase).concat(n);
 }
 
-let country = new Country();
+AddClassA.prototype.getCapital = function(key) {
+    return [key, this._dataBase[key]];
+}
+
+AddClassA.prototype.deleteAll = function() {
+    return this._dataBase = {};
+}
+
+let country = new AddClassA();
 
 country.addValue('Германия', 'Берлин', );
 country.addValue('Беларусь', 'Минск', );
 country.addValue('Россия', 'Москва', );
+
+function AddClassB() {
+    HashStorageFunc.apply(this, arguments);
+}
+
+AddClassB.prototype = Object.create(HashStorageFunc.prototype);
+
+AddClassB.prototype.getPieses = function() {
+    let n = 0;
+    for (let key in this._dataBase) {
+        n++;
+    }
+    return n;
+}
+
+AddClassA.prototype.getKeys = function() {
+    HashStorageFunc.prototype.getKeys.call(this);
+    let n = 0;
+    for (let key in this._dataBase) {
+        if (this._dataBase[key] === value) {
+            n++;
+        }
+    }
+    return n;
+}
+
+let students = new AddClassB();
+
+students.addValue('Иванов', 'М', );
+students.addValue('Петров', 'М', );
+students.addValue('Козлов', 'М', );
+students.addValue('Петрова', 'Ж', );
+students.addValue('Сидорова', 'Ж', );

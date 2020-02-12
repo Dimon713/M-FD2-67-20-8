@@ -23,25 +23,15 @@ class HashStorageFunc {
     getKeys() {
         return Object.keys(this._dataBase);
     }
-
-    getPieses() {
-        let n = 0;
-        for (let key in this._dataBase) {
-            n++;
-        }
-        return n;
-    }
-    deleteAll() {
-        return this._dataBase = {};
-    }
 }
 
-class Students extends HashStorageFunc {
+class AddClassA extends HashStorageFunc {
     constructor() {
         super();
     }
 
     getKeys(value) {
+        super.getKeys(value);
         let n = 0;
         for (let key in this._dataBase) {
             if (this._dataBase[key] === value) {
@@ -50,9 +40,53 @@ class Students extends HashStorageFunc {
         }
         return n;
     }
+
+    getCapital = function(key) {
+        return [key, this._dataBase[key]];
+    }
+
+    deleteAll() {
+        return this._dataBase = {};
+    }
 }
 
-let students = new Students();
+let country = new AddClassA();
+
+country.addValue('Германия', 'Берлин', );
+country.addValue('Беларусь', 'Минск', );
+country.addValue('Россия', 'Москва', );
+
+
+class AddClassB extends HashStorageFunc {
+    constructor() {
+        super();
+    }
+
+    getKeys(value) {
+        super.getKeys(value);
+        let n = 0;
+        for (let key in this._dataBase) {
+            if (this._dataBase[key] === value) {
+                n++;
+            }
+        }
+        return n;
+    }
+
+    getPieses() {
+        let n = 0;
+        for (let key in this._dataBase) {
+            n++;
+        }
+        return n;
+    }
+
+    deleteAll() {
+        return this._dataBase = {};
+    }
+}
+
+let students = new AddClassB();
 
 students.addValue('Иванов', 'М', );
 students.addValue('Петров', 'М', );
