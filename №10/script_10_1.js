@@ -68,7 +68,7 @@ AddClassB.prototype.getPieses = function() {
     return n;
 }
 
-AddClassB.prototype.getKeys = function() {
+AddClassB.prototype.getKeys = function(value) {
     HashStorageFunc.prototype.getKeys.call(this);
     let n = 0;
     for (let key in this._dataBase) {
