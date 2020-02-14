@@ -23,16 +23,14 @@ HashStorageFunc.prototype.getKeys = function() {
     return Object.keys(this._dataBase);
 }
 
-
-
 function AddClassA() {
     HashStorageFunc.apply(this, arguments);
 }
 
 AddClassA.prototype = Object.create(HashStorageFunc.prototype);
+AddClassA.prototype.constructor = AddClassA;
 
 AddClassA.prototype.getKeys = function() {
-    HashStorageFunc.prototype.getKeys.call(this);
     let n = 0;
     for (let key in this._dataBase) {
         n++;
@@ -59,6 +57,7 @@ function AddClassB() {
 }
 
 AddClassB.prototype = Object.create(HashStorageFunc.prototype);
+AddClassB.prototype.constructor = AddClassB;
 
 AddClassB.prototype.getPieses = function() {
     let n = 0;
@@ -69,7 +68,6 @@ AddClassB.prototype.getPieses = function() {
 }
 
 AddClassB.prototype.getKeys = function(value) {
-    HashStorageFunc.prototype.getKeys.call(this);
     let n = 0;
     for (let key in this._dataBase) {
         if (this._dataBase[key] === value) {

@@ -26,19 +26,14 @@ class HashStorageFunc {
 }
 
 class AddClassA extends HashStorageFunc {
-    constructor() {
-        super();
-    }
 
     getKeys(value) {
-        super.getKeys(value);
+        super.getKeys();
         let n = 0;
         for (let key in this._dataBase) {
-            if (this._dataBase[key] === value) {
-                n++;
-            }
+            n++;
         }
-        return n;
+        return Object.keys(this._dataBase).concat(n);;
     }
 
     getCapital = function(key) {
@@ -58,9 +53,6 @@ country.addValue('Россия', 'Москва', );
 
 
 class AddClassB extends HashStorageFunc {
-    constructor() {
-        super();
-    }
 
     getKeys(value) {
         super.getKeys(value);
