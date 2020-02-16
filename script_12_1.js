@@ -106,9 +106,6 @@ function createForm(insertform, insertArr) {
         let input = document.createElement('input');
         let br = document.createElement('br');
         let labelText = document.createTextNode(currentValue.label);
-        input.style.marginBottom = '5px';
-        input.style.marginLeft = '10px';
-        input.style.left = '50px';
 
         input.type = type;
         input.name = currentValue.name;
