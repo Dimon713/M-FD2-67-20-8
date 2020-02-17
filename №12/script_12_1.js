@@ -99,32 +99,47 @@ let formDef2 = [{
 function createForm(insertform, insertArr) {
 
     let form = insertform;
-    form.action = 'http://fe.it-academy.by/TestForm.php'
+    form.action = 'http://fe.it-academy.by/TestForm.php';
+    form.method = 'post';
 
     function makeInput(type, currentValue) {
         let label = document.createElement('label');
         let input = document.createElement('input');
         let br = document.createElement('br');
         let labelText = document.createTextNode(currentValue.label);
+        let span = document.createElement('span');
+        form.style.width = '50%';
+        input.style.marginBottom = '15px';
+        input.style.width = '45%';
+        span.style.width = '45%';
+        span.style.display = 'inline-block';
+
+        if (type === 'checkbox') {
+            span.style.width = '44%';
+            input.style.width = 'auto';
+        }
 
         input.type = type;
         input.name = currentValue.name;
 
         form.appendChild(label);
         form.appendChild(br);
-        label.appendChild(labelText);
+        label.appendChild(span);
+        span.appendChild(labelText);
         label.appendChild(input);
     }
 
-    for (let i = 0; i < insertArr.length; i++) {
+    insertArr.forEach((currentValue) => {
 
-        let currentValue = insertArr[i];
         if (currentValue.kind === 'longtext') {
             makeInput('text', currentValue);
+
         } else if (currentValue.kind === 'number') {
             makeInput('number', currentValue);
+
         } else if (currentValue.kind === 'shorttext') {
             makeInput('email', currentValue);
+
         } else if (currentValue.kind === 'submit') {
             let input = document.createElement('input');
             let br = document.createElement('br');
@@ -132,7 +147,9 @@ function createForm(insertform, insertArr) {
             input.type = 'submit';
             input.value = currentValue.label;
 
+            form.appendChild(br);
             form.appendChild(input);
+
 
         } else if (currentValue.kind === 'combo') {
             let label = document.createElement('label');
@@ -140,16 +157,21 @@ function createForm(insertform, insertArr) {
             let br = document.createElement('br');
             let arrOption = currentValue.variants;
             let select = document.createElement('select');
-
+            let span = document.createElement('span');
+            select.style.marginBottom = '10px';
+            select.style.width = '45%';
+            span.style.width = '45%';
+            span.style.display = 'inline-block';
 
             select.name = currentValue.name;
 
-            label.appendChild(labelText);
+            label.appendChild(span);
+            span.appendChild(labelText);
             label.appendChild(select);
             form.appendChild(label);
             form.appendChild(br);
 
-            arrOption.forEach(function(item) {
+            arrOption.forEach((item) => {
                 let option = document.createElement('option');
                 let optionText = document.createTextNode(item.text);
 
@@ -158,21 +180,26 @@ function createForm(insertform, insertArr) {
                 select.appendChild(option);
                 option.appendChild(optionText);
             });
+
         } else if (currentValue.kind === 'radio') {
             let label = document.createElement('label');
             let labelText = document.createTextNode(currentValue.label);
             let br = document.createElement('br');
             let arrRadio = currentValue.variants;
-
+            let span = document.createElement('span');
+            span.style.width = '44%';
+            span.style.display = 'inline-block';
 
             form.appendChild(label);
             form.appendChild(br);
-            label.appendChild(labelText);
+            label.appendChild(span);
+            span.appendChild(labelText);
 
-            arrRadio.forEach(function(item) {
+            arrRadio.forEach((item) => {
                 let input = document.createElement('input');
                 let labelRadio = document.createElement('label');
                 let labelTextRadio = document.createTextNode(item.text);
+                input.style.marginBottom = '10px';
 
                 input.type = 'radio';
                 input.name = item.name;
@@ -182,23 +209,26 @@ function createForm(insertform, insertArr) {
                 labelRadio.appendChild(labelTextRadio);
                 label.appendChild(labelRadio);
             });
+
         } else if (currentValue.kind === 'check') {
             makeInput('checkbox', currentValue);
+
         } else if (currentValue.kind === 'memo') {
             let label = document.createElement('label');
             let labelText = document.createTextNode(currentValue.label);
             let br = document.createElement('br');
             let textarea = document.createElement('textarea');
+            textarea.style.width = '88%';
 
             textarea.name = currentValue.name;
 
             label.appendChild(labelText);
+            label.appendChild(br);
             form.appendChild(label);
-            form.appendChild(br);
             label.appendChild(textarea);
         }
-    }
-};
+    });
+}
 
 let form1 = document.forms.form1;
 
