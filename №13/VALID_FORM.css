@@ -68,8 +68,6 @@ body {
 
 .err {
     border: 1px solid red;
-    color: red;
-    display: inline;
 }
 
 .feedback-button {
