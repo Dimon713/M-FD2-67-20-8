@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="VALID_FORM.css">
+    <title>VALID_FORM</title>
+</head>
+
+<body>
+    <form action="http://fe.it-academy.by/TestForm.php" id="form1" name="form1" class="feedback">
+        <div class="feedback-group ">
+
+            <label class="feedback-label">
+                <span>Разработчики:</span>
+                <input class="feedback-input" type="text" name="developer">
+                <div class="err-message developerErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Название сайта:</span>
+                <input class="feedback-input" type="text" name="sitename">
+                <div class="err-message sitenameErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>URL сайта:</span>
+                <input class="feedback-input" type="text" name="Url">
+                <div class="err-message UrlErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Дата запуска сайта:</span>
+                <input class="feedback-input little" type="date" name="start">
+                <div class="err-message startErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Посетителей в сутки:</span>
+                <input class="feedback-input persons" type="number" name="visitors">
+                <div class="err-message visitorsErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>E-mail для связи:</span>
+                <input class="feedback-input" type="text" name="email">
+                <div class="err-message emailErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Рубрика каталога:</span>
+                <select class="feedback-input rubric" name="rubric">
+                    <option value='0'>Выберите рубрику</option>
+                    <option value='1'>Здоровье</option>
+                    <option value='2'>Домашний уют</option>
+                    <option value='3'>Бытовая техника</option>
+                </select>
+                <div class="err-message rubricErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Размещение:</span>
+                <input type="radio" value="1" name="radio">бесплатное
+                <input type="radio" value="2" name="radio">платное
+                <input type="radio" value="3" name="radio">VIP
+                <div class="err-message radioErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Разрешить отзывы:</span>
+                <input class="comments" type="checkbox" id="reviews">
+                <div class="err-message reviewsErr"></div>
+            </label>
+
+            <label class="feedback-label">
+                <span>Описание сайта:</span>
+                <textarea class="feedback-textarea" name="about"></textarea>
+                <div class="err-message aboutErr"></div>
+                <input class="feedback-button" type="submit">
+            </label>
+        </div>
+    </form>
+
+</body>
+<script src="VALID_FORM.js"></script>
+
+</html>
