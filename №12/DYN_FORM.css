@@ -23,14 +23,14 @@ body {
     min-width: 765px;
 }
 
-.feedback-label {
-    display: block;
-    margin-bottom: 15px;
-}
-
 .feedback-label span {
     width: 25%;
     display: inline-block;
+    margin-bottom: 5px;
+}
+
+.feedback-label {
+    display: block;
     margin-bottom: 5px;
 }
 
@@ -39,22 +39,6 @@ body {
     padding: 5px;
     display: inline-block;
     border: 1px solid grey;
-}
-
-.persons {
-    width: 10%;
-}
-
-.little {
-    width: 25%;
-}
-
-.rubric {
-    width: 30%;
-}
-
-.comments {
-    width: auto;
 }
 
 .feedback-textarea {
@@ -68,15 +52,10 @@ body {
     margin: 20px 0;
 }
 
-.err-message {
-    color: red;
-    display: inline;
+.little {
+    width: 10%;
 }
 
-.err {
-    border: 1px solid red;
-}
-
-.feedback-button {
-    display: block;
+.rubric {
+    width: 30%;
 }

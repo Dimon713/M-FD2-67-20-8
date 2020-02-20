@@ -99,8 +99,12 @@ let formDef2 = [{
 function createForm(insertform, insertArr) {
 
     let form = insertform;
+    let div = document.createElement('div');
     form.action = 'http://fe.it-academy.by/TestForm.php';
     form.method = 'post';
+    form.className = 'feedback';
+    div.className = 'feedback-group';
+
 
     function makeInput(type, currentValue) {
         let label = document.createElement('label');
@@ -108,22 +112,28 @@ function createForm(insertform, insertArr) {
         let br = document.createElement('br');
         let labelText = document.createTextNode(currentValue.label);
         let span = document.createElement('span');
-        form.style.width = '50%';
-        input.style.marginBottom = '15px';
-        input.style.width = '45%';
-        span.style.width = '45%';
-        span.style.display = 'inline-block';
+
+
 
         if (type === 'checkbox') {
-            span.style.width = '44%';
             input.style.width = 'auto';
         }
 
         input.type = type;
         input.name = currentValue.name;
+        label.className = 'feedback-label';
+        input.className = 'feedback-input';
+        span.className = 'feedback-label span';
 
-        form.appendChild(label);
-        form.appendChild(br);
+
+        if (type === 'number') {
+            input.className = 'feedback-input little';
+        }
+
+
+        form.appendChild(div);
+        div.appendChild(label);
+        div.appendChild(br);
         label.appendChild(span);
         span.appendChild(labelText);
         label.appendChild(input);
@@ -146,9 +156,10 @@ function createForm(insertform, insertArr) {
 
             input.type = 'submit';
             input.value = currentValue.label;
+            input.className = 'feedback-button';
 
-            form.appendChild(br);
-            form.appendChild(input);
+            div.appendChild(br);
+            div.appendChild(input);
 
 
         } else if (currentValue.kind === 'combo') {
@@ -158,18 +169,16 @@ function createForm(insertform, insertArr) {
             let arrOption = currentValue.variants;
             let select = document.createElement('select');
             let span = document.createElement('span');
-            select.style.marginBottom = '10px';
-            select.style.width = '45%';
-            span.style.width = '45%';
-            span.style.display = 'inline-block';
-
             select.name = currentValue.name;
+
+            label.className = 'feedback-label';
+            select.className = 'feedback-input rubric';
 
             label.appendChild(span);
             span.appendChild(labelText);
             label.appendChild(select);
-            form.appendChild(label);
-            form.appendChild(br);
+            div.appendChild(label);
+            div.appendChild(br);
 
             arrOption.forEach((item) => {
                 let option = document.createElement('option');
@@ -187,11 +196,11 @@ function createForm(insertform, insertArr) {
             let br = document.createElement('br');
             let arrRadio = currentValue.variants;
             let span = document.createElement('span');
-            span.style.width = '44%';
-            span.style.display = 'inline-block';
 
-            form.appendChild(label);
-            form.appendChild(br);
+            label.className = 'feedback-label';
+
+            div.appendChild(label);
+            div.appendChild(br);
             label.appendChild(span);
             span.appendChild(labelText);
 
@@ -218,13 +227,14 @@ function createForm(insertform, insertArr) {
             let labelText = document.createTextNode(currentValue.label);
             let br = document.createElement('br');
             let textarea = document.createElement('textarea');
-            textarea.style.width = '88%';
 
             textarea.name = currentValue.name;
+            label.className = 'feedback-label';
+            textarea.className = 'feedback-textarea';
 
             label.appendChild(labelText);
             label.appendChild(br);
-            form.appendChild(label);
+            div.appendChild(label);
             label.appendChild(textarea);
         }
     });
