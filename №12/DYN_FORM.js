@@ -208,7 +208,6 @@ function createForm(insertform, insertArr) {
                 let input = document.createElement('input');
                 let labelRadio = document.createElement('label');
                 let labelTextRadio = document.createTextNode(item.text);
-                input.style.marginBottom = '10px';
 
                 input.type = 'radio';
                 input.name = item.name;

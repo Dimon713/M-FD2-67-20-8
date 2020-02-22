@@ -1,11 +1,11 @@
 function validDeveloper() {
     if (document.forms.form1.developer.value == '') {
         document.forms.form1.developer.className = 'feedback-input err';
-        document.querySelector('.developerErr').innerHTML = 'Введите ФИО';
+        document.querySelector('.developerErr').textContent = 'Введите ФИО';
         return false;
     } else {
         document.forms.form1.developer.className = 'feedback-input';
-        document.querySelector('.developerErr').innerHTML = '';
+        document.querySelector('.developerErr').textContent = '';
         return true;
     }
 };
@@ -13,11 +13,11 @@ function validDeveloper() {
 function validSiteName() {
     if (document.forms.form1.sitename.value == "") {
         document.forms.form1.sitename.className = 'feedback-input err';
-        document.querySelector('.sitenameErr').innerHTML = 'Введите название сайта';
+        document.querySelector('.sitenameErr').textContent = 'Введите название сайта';
         return false;
     } else {
         document.forms.form1.sitename.className = 'feedback-input';
-        document.querySelector('.sitenameErr').innerHTML = '';
+        document.querySelector('.sitenameErr').textContent = '';
         return true;
     }
 };
@@ -25,11 +25,11 @@ function validSiteName() {
 function validUrl() {
     if (document.forms.form1.Url.value.indexOf(".") < 1) {
         document.forms.form1.Url.className = 'feedback-input err';
-        document.querySelector('.UrlErr').innerHTML = 'Введите адрес сайта';
+        document.querySelector('.UrlErr').textContent = 'Введите адрес сайта';
         return false;
     } else {
         document.forms.form1.Url.className = 'feedback-input';
-        document.querySelector('.UrlErr').innerHTML = '';
+        document.querySelector('.UrlErr').textContent = '';
         return true;
     }
 };
@@ -37,11 +37,11 @@ function validUrl() {
 function validStart() {
     if (document.forms.form1.start.value == "") {
         document.forms.form1.start.className = 'feedback-input little err';
-        document.querySelector('.startErr').innerHTML = 'Введите дату запуска сайта';
+        document.querySelector('.startErr').textContent = 'Введите дату запуска сайта';
         return false;
     } else {
         document.forms.form1.start.className = 'feedback-input little';
-        document.querySelector('.startErr').innerHTML = '';
+        document.querySelector('.startErr').textContent = '';
         return true;
     }
 };
@@ -49,11 +49,11 @@ function validStart() {
 function validVisitors() {
     if (document.forms.form1.visitors.value == "") {
         document.forms.form1.visitors.className = 'feedback-input persons err';
-        document.querySelector('.visitorsErr').innerHTML = 'Введите количество посетителей';
+        document.querySelector('.visitorsErr').textContent = 'Введите количество посетителей';
         return false;
     } else {
         document.forms.form1.visitors.className = 'feedback-input persons';
-        document.querySelector('.visitorsErr').innerHTML = '';
+        document.querySelector('.visitorsErr').textContent = '';
         return true;
     }
 };
@@ -61,11 +61,11 @@ function validVisitors() {
 function validEmail() {
     if (document.forms.form1.email.value.indexOf("@") < 1) {
         document.forms.form1.email.className = 'feedback-input err';
-        document.querySelector('.emailErr').innerHTML = 'Введите почту для связи';
+        document.querySelector('.emailErr').textContent = 'Введите почту для связи';
         return false;
     } else {
         document.forms.form1.email.className = 'feedback-input';
-        document.querySelector('.emailErr').innerHTML = '';
+        document.querySelector('.emailErr').textContent = '';
         return true;
     }
 };
@@ -73,31 +73,31 @@ function validEmail() {
 function validRubric() {
     if (document.forms.form1.rubric.value === "0") {
         document.forms.form1.rubric.className = 'feedback-input rubric err';
-        document.querySelector('.rubricErr').innerHTML = 'Выберите рубрику';
+        document.querySelector('.rubricErr').textContent = 'Выберите рубрику';
         return false;
     } else {
         document.forms.form1.rubric.className = 'feedback-input rubric';
-        document.querySelector('.rubricErr').innerHTML = '';
+        document.querySelector('.rubricErr').textContent = '';
         return true;
     }
 };
 
 function validPublic() {
     if (document.forms.form1.radio.value === "") {
-        document.querySelector('.radioErr').innerHTML = 'Выберите поле';
+        document.querySelector('.radioErr').textContent = 'Выберите поле';
         return false;
     } else {
-        document.querySelector('.radioErr').innerHTML = '';
+        document.querySelector('.radioErr').textContent = '';
         return true;
     }
 };
 
 function validReviews() {
     if (!document.getElementById("reviews").checked) {
-        document.querySelector('.reviewsErr').innerHTML = 'Разрешите отзывы';
+        document.querySelector('.reviewsErr').textContent = 'Разрешите отзывы';
         return false;
     } else {
-        document.querySelector('.reviewsErr').innerHTML = '';
+        document.querySelector('.reviewsErr').textContent = '';
         return true;
     }
 };
@@ -105,11 +105,11 @@ function validReviews() {
 function validAbout() {
     if (document.forms.form1.about.value === "") {
         document.forms.form1.about.className = 'feedback-textarea err';
-        document.querySelector('.aboutErr').innerHTML = 'Опишите свой сайт';
+        document.querySelector('.aboutErr').textContent = 'Опишите свой сайт';
         return false;
     } else {
         document.forms.form1.about.className = 'feedback-textarea';
-        document.querySelector('.aboutErr').innerHTML = '';
+        document.querySelector('.aboutErr').textContent = '';
         return true;
     }
 };
@@ -122,6 +122,7 @@ function validAll() {
             count++;
         }
     });
+    document.querySelector('.err').focus();
     if (count) {
         event.preventDefault();
     }
