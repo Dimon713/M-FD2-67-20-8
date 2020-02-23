@@ -140,10 +140,10 @@ function deleteErrMessage(field) {
 }
 
 function validateAll() {
-    let validArr = [developerName, siteName, Url, start, visitors, email, rubric, public, reviews, about];
+    let allField = [developerName, siteName, Url, start, visitors, email, rubric, public, reviews, about];
 
     let count = 0;
-    validArr.forEach(item => {
+    allField.forEach(item => {
         if (!validate(item)) {
             count++;
         }
