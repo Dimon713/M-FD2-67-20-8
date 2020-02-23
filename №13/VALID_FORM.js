@@ -1,124 +1,150 @@
-function validDeveloper() {
-    if (document.forms.form1.developer.value == '') {
-        document.forms.form1.developer.className = 'feedback-input err';
-        document.querySelector('.developerErr').textContent = 'Введите ФИО';
+let form1 = document.forms.form1;
+let developerName = form1.developer;
+let siteName = form1.sitename;
+let Url = form1.Url;
+let start = form1.start;
+let visitors = form1.visitors;
+let email = form1.email;
+let rubric = form1.rubric;
+let public = form1.radio;
+let reviews = form1.reviews;
+let about = form1.about;
+
+developerName.addEventListener('blur', validate.bind(null, developerName));
+siteName.addEventListener('blur', validate.bind(null, siteName));
+Url.addEventListener('blur', validate.bind(null, Url));
+start.addEventListener('blur', validate.bind(null, start));
+visitors.addEventListener('blur', validate.bind(null, visitors));
+email.addEventListener('blur', validate.bind(null, email));
+rubric.addEventListener('blur', validate.bind(null, rubric));
+form1.addEventListener('change', validate.bind(null, public));
+reviews.addEventListener('blur', validate.bind(null, reviews));
+about.addEventListener('blur', validate.bind(null, about));
+form1.addEventListener('submit', validateAll);
+
+function validate(field) {
+
+    if (field === public && !field.value) { //radio
+        addErrMessage(field);
         return false;
-    } else {
-        document.forms.form1.developer.className = 'feedback-input';
-        document.querySelector('.developerErr').textContent = '';
+    } else if (field === public && field.value) {
+        deleteErrMessage(field);
         return true;
+    }
+
+    switch (field.type) {
+        case 'text':
+        case 'date':
+        case 'email':
+        case 'number':
+        case 'textarea':
+            if (!field.value) {
+                field.classList.add('err');
+                addErrMessage(field);
+                return false;
+            } else {
+                field.classList.remove('err');
+                deleteErrMessage(field)
+                return true;
+            }
+        case 'checkbox':
+            if (!field.checked) {
+                addErrMessage(field);
+                return false;
+            } else {
+                deleteErrMessage(field);
+                return true;
+            }
+        case 'select-one':
+            if (field.value === "0") {
+                field.classList.add('err');
+                addErrMessage(field);
+                return false;
+            } else {
+                field.classList.remove('err');
+                deleteErrMessage(field)
+                return true;
+            }
     }
 };
 
-function validSiteName() {
-    if (document.forms.form1.sitename.value == "") {
-        document.forms.form1.sitename.className = 'feedback-input err';
-        document.querySelector('.sitenameErr').textContent = 'Введите название сайта';
-        return false;
-    } else {
-        document.forms.form1.sitename.className = 'feedback-input';
-        document.querySelector('.sitenameErr').textContent = '';
-        return true;
-    }
-};
+function addErrMessage(field) {
 
-function validUrl() {
-    if (document.forms.form1.Url.value.indexOf(".") < 1) {
-        document.forms.form1.Url.className = 'feedback-input err';
-        document.querySelector('.UrlErr').textContent = 'Введите адрес сайта';
-        return false;
-    } else {
-        document.forms.form1.Url.className = 'feedback-input';
-        document.querySelector('.UrlErr').textContent = '';
-        return true;
+    switch (field) {
+        case developerName:
+            document.querySelector('.developerErr').textContent = 'Введите ФИО';
+            break;
+        case siteName:
+            document.querySelector('.sitenameErr').textContent = 'Введите название сайта';
+            break;
+        case Url:
+            document.querySelector('.UrlErr').textContent = 'Введите адрес сайта';
+            break;
+        case start:
+            document.querySelector('.startErr').textContent = 'Введите дату запуска сайта';
+            break;
+        case visitors:
+            document.querySelector('.visitorsErr').textContent = 'Введите количество посетителей';
+            break;
+        case email:
+            document.querySelector('.emailErr').textContent = 'Введите почту для связи';
+            break;
+        case rubric:
+            document.querySelector('.rubricErr').textContent = 'Выберите рубрику';
+            break;
+        case public:
+            document.querySelector('.radioErr').textContent = 'Выберите поле';
+            break;
+        case reviews:
+            document.querySelector('.reviewsErr').textContent = 'Разрешите отзывы';
+            break;
+        case about:
+            document.querySelector('.aboutErr').textContent = 'Опишите свой сайт';
+            break;
     }
-};
+}
 
-function validStart() {
-    if (document.forms.form1.start.value == "") {
-        document.forms.form1.start.className = 'feedback-input little err';
-        document.querySelector('.startErr').textContent = 'Введите дату запуска сайта';
-        return false;
-    } else {
-        document.forms.form1.start.className = 'feedback-input little';
-        document.querySelector('.startErr').textContent = '';
-        return true;
+function deleteErrMessage(field) {
+    switch (field) {
+        case developerName:
+            document.querySelector('.developerErr').textContent = '';
+            break;
+        case siteName:
+            document.querySelector('.sitenameErr').textContent = '';
+            break;
+        case Url:
+            document.querySelector('.UrlErr').textContent = '';
+            break;
+        case start:
+            document.querySelector('.startErr').textContent = '';
+            break;
+        case visitors:
+            document.querySelector('.visitorsErr').textContent = '';
+            break;
+        case email:
+            document.querySelector('.emailErr').textContent = '';
+            break;
+        case rubric:
+            document.querySelector('.rubricErr').textContent = '';
+            break;
+        case public:
+            document.querySelector('.radioErr').textContent = '';
+            break;
+        case reviews:
+            document.querySelector('.reviewsErr').textContent = '';
+            break;
+        case about:
+            document.querySelector('.aboutErr').textContent = '';
+            break;
     }
-};
+}
 
-function validVisitors() {
-    if (document.forms.form1.visitors.value == "") {
-        document.forms.form1.visitors.className = 'feedback-input persons err';
-        document.querySelector('.visitorsErr').textContent = 'Введите количество посетителей';
-        return false;
-    } else {
-        document.forms.form1.visitors.className = 'feedback-input persons';
-        document.querySelector('.visitorsErr').textContent = '';
-        return true;
-    }
-};
+function validateAll() {
+    let validArr = [developerName, siteName, Url, start, visitors, email, rubric, public, reviews, about];
 
-function validEmail() {
-    if (document.forms.form1.email.value.indexOf("@") < 1) {
-        document.forms.form1.email.className = 'feedback-input err';
-        document.querySelector('.emailErr').textContent = 'Введите почту для связи';
-        return false;
-    } else {
-        document.forms.form1.email.className = 'feedback-input';
-        document.querySelector('.emailErr').textContent = '';
-        return true;
-    }
-};
-
-function validRubric() {
-    if (document.forms.form1.rubric.value === "0") {
-        document.forms.form1.rubric.className = 'feedback-input rubric err';
-        document.querySelector('.rubricErr').textContent = 'Выберите рубрику';
-        return false;
-    } else {
-        document.forms.form1.rubric.className = 'feedback-input rubric';
-        document.querySelector('.rubricErr').textContent = '';
-        return true;
-    }
-};
-
-function validPublic() {
-    if (document.forms.form1.radio.value === "") {
-        document.querySelector('.radioErr').textContent = 'Выберите поле';
-        return false;
-    } else {
-        document.querySelector('.radioErr').textContent = '';
-        return true;
-    }
-};
-
-function validReviews() {
-    if (!document.getElementById("reviews").checked) {
-        document.querySelector('.reviewsErr').textContent = 'Разрешите отзывы';
-        return false;
-    } else {
-        document.querySelector('.reviewsErr').textContent = '';
-        return true;
-    }
-};
-
-function validAbout() {
-    if (document.forms.form1.about.value === "") {
-        document.forms.form1.about.className = 'feedback-textarea err';
-        document.querySelector('.aboutErr').textContent = 'Опишите свой сайт';
-        return false;
-    } else {
-        document.forms.form1.about.className = 'feedback-textarea';
-        document.querySelector('.aboutErr').textContent = '';
-        return true;
-    }
-};
-
-function validAll() {
-    let validArr = [validDeveloper(), validSiteName(), validUrl(), validStart(), validVisitors(), validEmail(), validRubric(), validPublic(), validReviews(), validAbout()];
     let count = 0;
-    validArr.forEach((item) => {
-        if (!item) {
+    validArr.forEach(item => {
+        if (!validate(item)) {
             count++;
         }
     });
@@ -129,13 +155,44 @@ function validAll() {
 }
 
 
-let form1 = document.forms.form1;
-form1.developer.addEventListener('blur', validDeveloper);
-form1.sitename.addEventListener('blur', validSiteName);
-form1.Url.addEventListener('blur', validUrl);
-form1.start.addEventListener('blur', validStart);
-form1.visitors.addEventListener('blur', validVisitors);
-form1.email.addEventListener('blur', validEmail);
-form1.rubric.addEventListener('blur', validRubric);
-form1.about.addEventListener('blur', validAbout);
-form1.addEventListener('submit', validAll);
+
+
+
+// function addErrMessage(field) {
+//     console.log(field);
+//     let y = allField[`${field}`][0];
+//     document.querySelector(`.${y}`).textContent = 'Введите ФИО ';
+
+
+// let allField = {
+//     developerName: [
+//         'developerErr', 'Введите ФИО', '',
+//     ],
+//     siteName: [
+//         'sitenameErr', 'Введите название сайта', '',
+//     ],
+//     Url: [
+//         'UrlErr', 'Введите адрес сайта', '',
+//     ],
+//     start: [
+//         'startErr', 'Введите дату запуска сайта', '',
+//     ],
+//     visitors: [
+//         'startErr', 'Введите количество посетителей', '',
+//     ],
+//     email: [
+//         'emailErr', 'Введите почту для связи', '',
+//     ],
+//     rubric: [
+//         'rubricErr', 'Выберите рубрику', '',
+//     ],
+//     public: [
+//         'radioErr', 'Выберите поле', '',
+//     ],
+//     reviews: [
+//         'radioErr', 'Выберите поле', '',
+//     ],
+//     about: [
+//         'aboutErr', 'Опишите свой сайт', '',
+//     ],
+// }

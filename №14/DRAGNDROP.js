@@ -1,38 +1,49 @@
-let imgAll = document.querySelectorAll('img');
+let imgAll = document.querySelectorAll('.ball');
+let div = document.getElementById('balls');
 
-imgAll.forEach(element => {
+div.onmousedown = (event) => {
+    if (event.target.className === 'ball') {
 
-    element.onmousedown = function mouseDown(event) {
+        let ball = event.target;
+        let distance = ball.getBoundingClientRect();
+        let offsetX = event.clientX - distance.left;
+        let offsetY = event.clientY - distance.top;
 
-        let ballWigth = event.clientX - element.getBoundingClientRect().left;
-        let ballHight = event.clientY - element.getBoundingClientRect().top;
+        imgAll.forEach((element) => {
+            let startingPoints = element.getBoundingClientRect();
 
-        element.style.position = 'absolute';
-        element.style.zIndex = 10;
-        element.style.margin = '0px';
-        element.style.cursor = 'pointer';
+            element.style.left = startingPoints.x + 'px';
+            element.style.top = startingPoints.y + 'px';
 
-        document.body.appendChild(element)
+            setTimeout(
+                () => element.style.position = 'absolute', 100);
 
-        getCalc(event.pageX, event.pageY);
+        })
 
-        function getCalc(pageX, pageY) {
-            element.style.left = pageX - ballWigth + 'px';
-            element.style.top = pageY - ballHight + 'px';
+        setTimeout(
+            () => div.append(ball), 100);
+
+        function moveAt(pageX, pageY) {
+            ball.style.left = pageX - offsetX + 'px';
+            ball.style.top = pageY - offsetY + 'px';
         }
 
+        moveAt(event.pageX, event.pageY);
+
         function mouseMove(event) {
-            getCalc(event.pageX, event.pageY);
+            moveAt(event.pageX, event.pageY);
+            ball.style.cursor = 'pointer';
         }
 
         document.addEventListener('mousemove', mouseMove);
 
-        element.onmouseup = function() {
+        document.onmouseup = function() {
             document.removeEventListener('mousemove', mouseMove);
-            element.onmouseup = null;
+            ball.onmousemove = document.onmouseup = null;
         }
     }
-    element.ondragstart = function() {
-        return false;
-    }
-})
+};
+
+document.ondragstart = function() {
+    return false;
+};
