@@ -10,16 +10,16 @@ let public = form1.radio;
 let reviews = form1.reviews;
 let about = form1.about;
 
-developerName.addEventListener('blur', validate.bind(null, developerName));
-siteName.addEventListener('blur', validate.bind(null, siteName));
-Url.addEventListener('blur', validate.bind(null, Url));
-start.addEventListener('blur', validate.bind(null, start));
-visitors.addEventListener('blur', validate.bind(null, visitors));
-email.addEventListener('blur', validate.bind(null, email));
-rubric.addEventListener('blur', validate.bind(null, rubric));
+developerName.addEventListener('input', validate.bind(null, developerName));
+siteName.addEventListener('input', validate.bind(null, siteName));
+Url.addEventListener('input', validate.bind(null, Url));
+start.addEventListener('input', validate.bind(null, start));
+visitors.addEventListener('input', validate.bind(null, visitors));
+email.addEventListener('input', validate.bind(null, email));
+rubric.addEventListener('input', validate.bind(null, rubric));
 form1.addEventListener('change', validate.bind(null, public));
-reviews.addEventListener('blur', validate.bind(null, reviews));
-about.addEventListener('blur', validate.bind(null, about));
+reviews.addEventListener('input', validate.bind(null, reviews));
+about.addEventListener('input', validate.bind(null, about));
 form1.addEventListener('submit', validateAll);
 
 function validate(field) {
@@ -33,9 +33,18 @@ function validate(field) {
     }
 
     switch (field.type) {
+        case 'email':
+            if (field.value.indexOf("@") < 1) {
+                field.classList.add('err');
+                addErrMessage(field);
+                return false;
+            } else {
+                field.classList.remove('err');
+                deleteErrMessage(field)
+                return true;
+            }
         case 'text':
         case 'date':
-        case 'email':
         case 'number':
         case 'textarea':
             if (!field.value) {
