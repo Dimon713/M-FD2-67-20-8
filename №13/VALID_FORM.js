@@ -1,46 +1,71 @@
 let form1 = document.forms.form1;
-let developerName = form1.developer;
-let siteName = form1.sitename;
+let developerName = form1.developerName;
+let siteName = form1.siteName;
 let Url = form1.Url;
 let start = form1.start;
 let visitors = form1.visitors;
 let email = form1.email;
 let rubric = form1.rubric;
-let public = form1.radio;
+let public = form1.public;
 let reviews = form1.reviews;
 let about = form1.about;
 
-developerName.addEventListener('input', validate.bind(null, developerName));
-siteName.addEventListener('input', validate.bind(null, siteName));
-Url.addEventListener('input', validate.bind(null, Url));
-start.addEventListener('input', validate.bind(null, start));
-visitors.addEventListener('input', validate.bind(null, visitors));
-email.addEventListener('input', validate.bind(null, email));
-rubric.addEventListener('input', validate.bind(null, rubric));
+let allMessage = {
+    developerName: [
+        'developerErr', 'Введите ФИО', '',
+    ],
+    siteName: [
+        'sitenameErr', 'Введите название сайта', '',
+    ],
+    Url: [
+        'UrlErr', 'Введите адрес сайта', '',
+    ],
+    start: [
+        'startErr', 'Введите дату запуска сайта', '',
+    ],
+    visitors: [
+        'visitorsErr', 'Введите количество посетителей', '',
+    ],
+    email: [
+        'emailErr', 'Введите почту для связи', '',
+    ],
+    rubric: [
+        'rubricErr', 'Выберите рубрику', '',
+    ],
+    public: [
+        'publicErr', 'Выберите поле', '',
+    ],
+    reviews: [
+        'reviewsErr', 'Разрешите отзывы', ' ',
+    ],
+    about: [
+        'aboutErr', 'Опишите свой сайт', '',
+    ],
+}
+
+form1.oninput = (event) => validate(event.target);
 form1.addEventListener('change', validate.bind(null, public));
-reviews.addEventListener('input', validate.bind(null, reviews));
-about.addEventListener('input', validate.bind(null, about));
 form1.addEventListener('submit', validateAll);
 
 function validate(field) {
 
     if (field === public && !field.value) { //radio
-        addErrMessage(field);
+        document.querySelector(`.${allMessage['public'][0]}`).textContent = `${allMessage['public'][1]}`;
         return false;
     } else if (field === public && field.value) {
-        deleteErrMessage(field);
+        document.querySelector(`.${allMessage['public'][0]}`).textContent = `${allMessage['public'][2]}`;
         return true;
     }
 
     switch (field.type) {
         case 'email':
-            if (field.value.indexOf("@") < 1) {
+            if (field.value.indexOf('@') === -1 || field.value.indexOf('.') === -1) {
                 field.classList.add('err');
-                addErrMessage(field);
+                errMessage(field, 1);
                 return false;
             } else {
                 field.classList.remove('err');
-                deleteErrMessage(field)
+                errMessage(field, 2);
                 return true;
             }
         case 'text':
@@ -49,108 +74,40 @@ function validate(field) {
         case 'textarea':
             if (!field.value) {
                 field.classList.add('err');
-                addErrMessage(field);
+                errMessage(field, 1);
                 return false;
             } else {
                 field.classList.remove('err');
-                deleteErrMessage(field)
+                errMessage(field, 2)
                 return true;
             }
         case 'checkbox':
             if (!field.checked) {
-                addErrMessage(field);
+                errMessage(field, 1);
                 return false;
             } else {
-                deleteErrMessage(field);
+                errMessage(field, 2);
                 return true;
             }
         case 'select-one':
             if (field.value === "0") {
                 field.classList.add('err');
-                addErrMessage(field);
+                errMessage(field, 1);
                 return false;
             } else {
                 field.classList.remove('err');
-                deleteErrMessage(field)
+                errMessage(field, 2);
                 return true;
             }
     }
 };
 
-function addErrMessage(field) {
-
-    switch (field) {
-        case developerName:
-            document.querySelector('.developerErr').textContent = 'Введите ФИО';
-            break;
-        case siteName:
-            document.querySelector('.sitenameErr').textContent = 'Введите название сайта';
-            break;
-        case Url:
-            document.querySelector('.UrlErr').textContent = 'Введите адрес сайта';
-            break;
-        case start:
-            document.querySelector('.startErr').textContent = 'Введите дату запуска сайта';
-            break;
-        case visitors:
-            document.querySelector('.visitorsErr').textContent = 'Введите количество посетителей';
-            break;
-        case email:
-            document.querySelector('.emailErr').textContent = 'Введите почту для связи';
-            break;
-        case rubric:
-            document.querySelector('.rubricErr').textContent = 'Выберите рубрику';
-            break;
-        case public:
-            document.querySelector('.radioErr').textContent = 'Выберите поле';
-            break;
-        case reviews:
-            document.querySelector('.reviewsErr').textContent = 'Разрешите отзывы';
-            break;
-        case about:
-            document.querySelector('.aboutErr').textContent = 'Опишите свой сайт';
-            break;
-    }
-}
-
-function deleteErrMessage(field) {
-    switch (field) {
-        case developerName:
-            document.querySelector('.developerErr').textContent = '';
-            break;
-        case siteName:
-            document.querySelector('.sitenameErr').textContent = '';
-            break;
-        case Url:
-            document.querySelector('.UrlErr').textContent = '';
-            break;
-        case start:
-            document.querySelector('.startErr').textContent = '';
-            break;
-        case visitors:
-            document.querySelector('.visitorsErr').textContent = '';
-            break;
-        case email:
-            document.querySelector('.emailErr').textContent = '';
-            break;
-        case rubric:
-            document.querySelector('.rubricErr').textContent = '';
-            break;
-        case public:
-            document.querySelector('.radioErr').textContent = '';
-            break;
-        case reviews:
-            document.querySelector('.reviewsErr').textContent = '';
-            break;
-        case about:
-            document.querySelector('.aboutErr').textContent = '';
-            break;
-    }
+function errMessage(field, number) {
+    document.querySelector(`.${allMessage[`${field.id}`][0]}`).textContent = `${allMessage[`${field.id}`][number]}`;
 }
 
 function validateAll() {
     let allField = [developerName, siteName, Url, start, visitors, email, rubric, public, reviews, about];
-
     let count = 0;
     allField.forEach(item => {
         if (!validate(item)) {
@@ -162,46 +119,3 @@ function validateAll() {
         event.preventDefault();
     }
 }
-
-
-
-
-
-// function addErrMessage(field) {
-//     console.log(field);
-//     let y = allField[`${field}`][0];
-//     document.querySelector(`.${y}`).textContent = 'Введите ФИО ';
-
-
-// let allField = {
-//     developerName: [
-//         'developerErr', 'Введите ФИО', '',
-//     ],
-//     siteName: [
-//         'sitenameErr', 'Введите название сайта', '',
-//     ],
-//     Url: [
-//         'UrlErr', 'Введите адрес сайта', '',
-//     ],
-//     start: [
-//         'startErr', 'Введите дату запуска сайта', '',
-//     ],
-//     visitors: [
-//         'startErr', 'Введите количество посетителей', '',
-//     ],
-//     email: [
-//         'emailErr', 'Введите почту для связи', '',
-//     ],
-//     rubric: [
-//         'rubricErr', 'Выберите рубрику', '',
-//     ],
-//     public: [
-//         'radioErr', 'Выберите поле', '',
-//     ],
-//     reviews: [
-//         'radioErr', 'Выберите поле', '',
-//     ],
-//     about: [
-//         'aboutErr', 'Опишите свой сайт', '',
-//     ],
-// }

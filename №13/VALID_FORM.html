@@ -14,43 +14,43 @@
 
             <label class="feedback-label">
                 <span>Разработчики:</span>
-                <input class="feedback-input" type="text" name="developer">
+                <input id="developerName" class="feedback-input" type="text" name="developerName">
                 <div class="err-message developerErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Название сайта:</span>
-                <input class="feedback-input" type="text" name="sitename">
+                <input id="siteName" class="feedback-input" type="text" name="siteName">
                 <div class="err-message sitenameErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>URL сайта:</span>
-                <input class="feedback-input" type="text" name="Url">
+                <input id="Url" class="feedback-input" type="text" name="Url">
                 <div class="err-message UrlErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Дата запуска сайта:</span>
-                <input class="feedback-input little" type="date" name="start">
+                <input id="start" class="feedback-input little" type="date" name="start">
                 <div class="err-message startErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Посетителей в сутки:</span>
-                <input class="feedback-input persons" type="number" name="visitors">
+                <input id="visitors" class="feedback-input persons" type="number" name="visitors">
                 <div class="err-message visitorsErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>E-mail для связи:</span>
-                <input class="feedback-input" type="email" name="email">
+                <input id="email" class="feedback-input" type="email" name="email">
                 <div class="err-message emailErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Рубрика каталога:</span>
-                <select class="feedback-input rubric" name="rubric">
+                <select id="rubric" class="feedback-input rubric" name="rubric">
                     <option value='0'>Выберите рубрику</option>
                     <option value='1'>Здоровье</option>
                     <option value='2'>Домашний уют</option>
@@ -61,21 +61,21 @@
 
             <label class="feedback-label">
                 <span>Размещение:</span>
-                <input type="radio" value="1" name="radio">бесплатное
-                <input type="radio" value="2" name="radio">платное
-                <input type="radio" value="3" name="radio">VIP
-                <div class="err-message radioErr"></div>
+                <input type="radio" value="1" name="public">бесплатное
+                <input type="radio" value="2" name="public">платное
+                <input type="radio" value="3" name="public">VIP
+                <div class="err-message publicErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Разрешить отзывы:</span>
-                <input class="comments" type="checkbox" name="reviews">
+                <input id="reviews" class="comments" type="checkbox" name="reviews">
                 <div class="err-message reviewsErr"></div>
             </label>
 
             <label class="feedback-label">
                 <span>Описание сайта:</span>
-                <textarea class="feedback-textarea" name="about"></textarea>
+                <textarea id="about" class="feedback-textarea" name="about"></textarea>
                 <div class="err-message aboutErr"></div>
                 <input class="feedback-button" type="submit">
             </label>
