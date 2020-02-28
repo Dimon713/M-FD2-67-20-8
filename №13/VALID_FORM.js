@@ -1,12 +1,12 @@
 let form1 = document.forms.form1;
 let developerName = form1.developerName;
 let siteName = form1.siteName;
-let Url = form1.Url;
+let url = form1.url;
 let start = form1.start;
 let visitors = form1.visitors;
 let email = form1.email;
 let rubric = form1.rubric;
-let public = form1.public;
+let radioButton = form1.radioButton;
 let reviews = form1.reviews;
 let about = form1.about;
 
@@ -17,8 +17,8 @@ let allMessage = {
     siteName: [
         'sitenameErr', 'Введите название сайта', '',
     ],
-    Url: [
-        'UrlErr', 'Введите адрес сайта', '',
+    url: [
+        'urlErr', 'Введите адрес сайта', '',
     ],
     start: [
         'startErr', 'Введите дату запуска сайта', '',
@@ -32,8 +32,8 @@ let allMessage = {
     rubric: [
         'rubricErr', 'Выберите рубрику', '',
     ],
-    public: [
-        'publicErr', 'Выберите поле', '',
+    radioButton: [
+        'radioButtonErr', 'Выберите поле', '',
     ],
     reviews: [
         'reviewsErr', 'Разрешите отзывы', ' ',
@@ -44,16 +44,16 @@ let allMessage = {
 }
 
 form1.oninput = (event) => validate(event.target);
-form1.addEventListener('change', validate.bind(null, public));
+form1.addEventListener('change', validate.bind(null, radioButton));
 form1.addEventListener('submit', validateAll);
 
 function validate(field) {
 
-    if (field === public && !field.value) { //radio
-        document.querySelector(`.${allMessage['public'][0]}`).textContent = `${allMessage['public'][1]}`;
+    if (field === radioButton && !field.value) { //radio
+        document.querySelector(`.${allMessage['radioButton'][0]}`).textContent = `${allMessage['radioButton'][1]}`;
         return false;
-    } else if (field === public && field.value) {
-        document.querySelector(`.${allMessage['public'][0]}`).textContent = `${allMessage['public'][2]}`;
+    } else if (field === radioButton && field.value) {
+        document.querySelector(`.${allMessage['radioButton'][0]}`).textContent = `${allMessage['radioButton'][2]}`;
         return true;
     }
 
@@ -107,7 +107,7 @@ function errMessage(field, number) {
 }
 
 function validateAll() {
-    let allField = [developerName, siteName, Url, start, visitors, email, rubric, public, reviews, about];
+    let allField = [developerName, siteName, url, start, visitors, email, rubric, radioButton, reviews, about];
     let count = 0;
     allField.forEach(item => {
         if (!validate(item)) {
