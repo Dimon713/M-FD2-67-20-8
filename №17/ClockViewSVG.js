@@ -1,29 +1,27 @@
-export function ManViewWebPageSVG(Id, city, Timezone) {
-    let myModel = null;
-    let myField = null;
-    let hoursHand = null;
-    let minuteHand = null;
-    let secondHand = null;
-    let widthSvg = null;
-    let heightSvg = null;
-
-    this.start = function(model, field) {
-        myModel = model;
-        myField = field;
-
-        viewClockSVG(Id, city);
-
-        hoursHand = myField.querySelector('.hoursHand');
-        minuteHand = myField.querySelector('.minuteHand');
-        secondHand = myField.querySelector('.secondHand');
-        widthSvg = myField.getAttribute('width');
-        heightSvg = myField.getAttribute('height');
+export class ManViewWebPageSVG {
+    constructor(Id, city, Timezone) {
+        this.Id = Id;
+        this.city = city;
+        this.Timezone = Timezone;
     }
 
-    this.update = function() {
-        hoursHand.setAttribute('transform', `rotate(${myModel.angleHours+Timezone*30} ${widthSvg/2} ${heightSvg/2})`);
-        minuteHand.setAttribute('transform', `rotate(${myModel.angleMinutes} ${widthSvg/2} ${heightSvg/2})`);
-        secondHand.setAttribute('transform', `rotate(${myModel.angleSeconds} ${widthSvg/2} ${heightSvg/2})`);
+    start(model, field) {
+        this.myModel = model;
+        this.myField = field;
+
+        viewClockSVG(this.Id, this.city);
+
+        this.hoursHand = this.myField.querySelector('.hoursHand');
+        this.minuteHand = this.myField.querySelector('.minuteHand');
+        this.secondHand = this.myField.querySelector('.secondHand');
+        this.widthSvg = this.myField.getAttribute('width');
+        this.heightSvg = this.myField.getAttribute('height');
+    }
+
+    update() {
+        this.hoursHand.setAttribute('transform', `rotate(${this.myModel.angleHours+this.Timezone*30} ${this.widthSvg/2} ${this.heightSvg/2})`);
+        this.minuteHand.setAttribute('transform', `rotate(${this.myModel.angleMinutes} ${this.widthSvg/2} ${this.heightSvg/2})`);
+        this.secondHand.setAttribute('transform', `rotate(${this.myModel.angleSeconds} ${this.widthSvg/2} ${this.heightSvg/2})`);
     }
 };
 

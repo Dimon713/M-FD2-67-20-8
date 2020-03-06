@@ -1,13 +1,17 @@
-export function ManViewWebPageCanvas(Id, city, Timezone) {
-    let myModel = null;
-
-    this.start = function(model, field) {
-        myModel = model;
-        createBtnsCanvas(Id, city)
+export class ManViewWebPageCanvas {
+    constructor(Id, city, Timezone) {
+        this.Id = Id;
+        this.city = city;
+        this.Timezone = Timezone;
     }
 
-    this.update = function() {
-        moveHands(Id, myModel.hours + Timezone, myModel.minutes, myModel.seconds);
+    start(model, field) {
+        this.myModel = model;
+        createBtnsCanvas(this.Id, this.city)
+    }
+
+    update() {
+        moveHands(this.Id, this.myModel.hours + this.Timezone, this.myModel.minutes, this.myModel.seconds);
     }
 }
 

@@ -1,15 +1,13 @@
-export function ManModel() {
-    let myView = null;
-    let timerId = null;
+export class ManModel {
 
-    this.start = function(view) {
-        myView = view;
-        if (myView) {
-            timerId = setInterval(() => this.updateView(), 1000);
+    start(view) {
+        this.myView = view;
+        if (this.myView) {
+            this.timerId = setInterval(() => this.updateView(), 1000);
         }
     }
 
-    this.updateView = function() {
+    updateView() {
         this.currenTime = new Date();
         this.hours = this.currenTime.getHours() - 3;
         this.minutes = this.currenTime.getMinutes();
@@ -19,16 +17,16 @@ export function ManModel() {
         this.angleMinutes = this.minutes * 6;
         this.angleSeconds = this.seconds * 6;
 
-        if (myView) {
-            myView.update();
+        if (this.myView) {
+            this.myView.update();
         }
     };
 
-    this.startClock = function() {
-        timerId = setInterval(() => this.updateView(), 1000);
+    startClock() {
+        this.timerId = setInterval(() => this.updateView(), 1000);
     };
 
-    this.stopClock = function() {
-        clearInterval(timerId);
+    stopClock() {
+        clearInterval(this.timerId);
     };
 };

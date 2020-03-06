@@ -1,23 +1,20 @@
-export function ManControllerButtons() {
-    var myModel = null;
-    var myField = null;
+export class ManControllerButtons {
+    constructor(model) {
+        this.startModel = function() {
+            model.startClock();
+        };
 
-    this.start = function(model, field) {
-        myModel = model;
-        myField = field;
-
-        let buttonStart = myField.querySelector('.startBtn');
-        buttonStart.addEventListener('click', this.startModel);
-
-        let btnStop = myField.querySelector('.stopBtn');
-        btnStop.addEventListener('click', this.stopModel);
+        this.stopModel = function() {
+            model.stopClock();
+        };
     };
 
-    this.startModel = function() {
-        myModel.startClock();
-    };
+    start(field) {
+        this.myField = field;
+        this.btnStart = this.myField.querySelector('.startBtn');
+        this.btnStart.addEventListener('click', this.startModel);
 
-    this.stopModel = function() {
-        myModel.stopClock();
+        this.btnStop = this.myField.querySelector('.stopBtn');
+        this.btnStop.addEventListener('click', this.stopModel);
     };
 };
