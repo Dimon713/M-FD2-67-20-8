@@ -25,8 +25,7 @@ export class ManViewWebPageSVG {
     }
 };
 
-
-export function viewClockSVG(Id, city) {
+function viewClockSVG(Id, city) {
     let btns = document.createElement('div');
     btns.style.display = 'block';
 
