@@ -6,7 +6,6 @@ export function ManViewWebPageSVG(Id, city, Timezone) {
     let secondHand = null;
     let widthSvg = null;
     let heightSvg = null;
-    let digitalClock = null;
 
     this.start = function(model, field) {
         myModel = model;
@@ -17,7 +16,6 @@ export function ManViewWebPageSVG(Id, city, Timezone) {
         hoursHand = myField.querySelector('.hoursHand');
         minuteHand = myField.querySelector('.minuteHand');
         secondHand = myField.querySelector('.secondHand');
-        digitalClock = myField.querySelector('.digitalClock');
         widthSvg = myField.getAttribute('width');
         heightSvg = myField.getAttribute('height');
     }

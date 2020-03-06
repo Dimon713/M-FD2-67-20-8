@@ -1,10 +1,8 @@
 export function ManViewWebPageCanvas(Id, city, Timezone) {
     let myModel = null;
-    let myField = null;
 
     this.start = function(model, field) {
         myModel = model;
-        myField = field;
         createBtnsCanvas(Id, city)
     }
 
