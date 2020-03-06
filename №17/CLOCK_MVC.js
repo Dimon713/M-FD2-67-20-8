@@ -1,15 +1,15 @@
 import {
     ManModel
-} from './Clock';
+} from './Clock.js';
 import {
     ManViewWebPageCanvas
-} from './ClockViewCanvas';
+} from './ClockViewCanvas.js';
 import {
     ManViewWebPageSVG
-} from './ClockViewSVG';
+} from './ClockViewSVG.js';
 import {
     ManControllerButtons
-} from './ClockControllerButtons';
+} from './ClockControllerButtons.js';
 
 let man1 = new ManModel();
 let view1 = new ManViewWebPageSVG('clock1', 'Лондон(GMT)', 0);

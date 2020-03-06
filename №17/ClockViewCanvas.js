@@ -46,7 +46,7 @@ function createBtnsCanvas(Id, city) {
 
 function moveHands(Id, hours, minutes, seconds) {
     let canvas = document.querySelector(`#${Id} .${Id}`)
-    ctx = canvas.getContext('2d');
+    let ctx = canvas.getContext('2d');
     let width = parseFloat(canvas.getAttribute('width'));
     let height = parseFloat(canvas.getAttribute('height'));
     const centerClockX = width / 2;
