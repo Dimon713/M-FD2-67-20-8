@@ -99,6 +99,4 @@ function createClock() {
     ctx.closePath();
 }
 
-setInterval(function() {
-    createClock();
-}, 25);
+setInterval('createClock()', 1000);

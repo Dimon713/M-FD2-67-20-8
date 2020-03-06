@@ -1,3 +1,5 @@
+export
+
 function createClock() {
     let svg = document.getElementById('clock');
     let widthSvg = parseFloat(svg.getAttribute('width'));
@@ -11,9 +13,9 @@ function createClock() {
     circle.setAttribute('fill', 'yellow');
     circle.setAttribute('stroke', 'none');
     svg.appendChild(circle);
-    let getBoundingClientRect = circle.getBoundingClientRect();
-    let centerClockX = getBoundingClientRect.left + getBoundingClientRect.width / 2;
-    let centerClockY = getBoundingClientRect.top + getBoundingClientRect.height / 2;
+    let BoundingClientRect = circle.getBoundingClientRect();
+    let centerClockX = BoundingClientRect.left + BoundingClientRect.width / 2;
+    let centerClockY = BoundingClientRect.top + BoundingClientRect.height / 2;
 
     let digitalClock = document.createElementNS(svgNS, 'text');
     digitalClock.setAttribute('x', centerClockX);
@@ -100,7 +102,5 @@ function moveHands() {
     document.getElementById('secondHand').setAttribute('transform', `rotate(${angleSeconds} ${widthSvg} ${heightSvg})`);
 }
 createClock();
-window.onload = moveHands();
-setInterval(function() {
-    moveHands();
-}, 1000);
+moveHands();
+setInterval('moveHands()', 1000);
