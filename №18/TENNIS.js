@@ -36,31 +36,13 @@ let blank = document.createTextNode(':');
 
 let racquet1 = document.createElement('div');
 racquet1.id = 'racquet1';
-racquet1.style.width = '15px';
-racquet1.style.height = '150px';
-racquet1.style.backgroundColor = 'green';
-racquet1.style.position = 'absolute';
-racquet1.style.top = '125px';
-racquet1.style.left = '0px';
 
 let racquet2 = document.createElement('div');
 racquet2.id = 'racquet2';
-racquet2.style.width = '15px';
-racquet2.style.height = '150px';
-racquet2.style.backgroundColor = 'blue';
-racquet2.style.position = 'absolute';
-racquet2.style.top = '125px';
-racquet2.style.right = '0px';
 
 let ball = document.createElement('div');
 ball.id = 'ball';
-ball.style.width = '50px';
-ball.style.height = '50px';
-ball.style.borderRadius = '25px';
-ball.style.backgroundColor = 'red';
-ball.style.position = 'absolute';
-ball.style.left = '325px';
-ball.style.top = '175px';
+
 
 document.body.appendChild(tennis);
 tennis.appendChild(btn);
@@ -73,23 +55,44 @@ court.appendChild(racquet1);
 court.appendChild(racquet2);
 court.appendChild(ball);
 
-function Racquet() {
-    this.y = 125;
-    this.speed = 0;
-    this.score = 0;
-};
 
-racquet1 = new Racquet();
-racquet2 = new Racquet();
+class Racquet {
+    constructor(selector, width, height, color, position, top, left) {
+        this.$el = document.querySelector(`#${selector}`)
+        this.$el.style.width = `${width}px`;
+        this.$el.style.height = `${height}px`;
+        this.$el.style.backgroundColor = color;
+        this.$el.style.position = position;
+        this.$el.style.top = `${top}px`;
+        this.$el.style.left = `${left}px`;
 
-function Ball() {
-    this.x = 175;
-    this.y = 325;
-    this.speedX = 0;
-    this.speedY = 0;
+        this.y = 125;
+        this.speed = 0;
+        this.score = 0;
+    }
 }
 
-ball = new Ball();
+class Ball {
+    constructor(selector, width, height, borderRadius, color, position, top, left) {
+        this.$el = document.querySelector(`#${selector}`)
+        this.$el.style.width = `${width}px`;
+        this.$el.style.height = `${height}px`;
+        this.$el.style.borderRadius = `${borderRadius}px`;
+        this.$el.style.backgroundColor = color;
+        this.$el.style.position = position;
+        this.$el.style.left = `${top}px`;
+        this.$el.style.top = `${left}px`;
+
+        this.x = 325;
+        this.y = 175;
+        this.speedX = 0;
+        this.speedY = 0;
+    }
+}
+
+racquet1 = new Racquet('racquet1', 15, 150, 'green', 'absolute', 125, 0);
+racquet2 = new Racquet('racquet2', 15, 150, 'blue', 'absolute', 125, 685);
+ball = new Ball('ball', 50, 50, 25, 'red', 'absolute', 325, 175);
 
 document.addEventListener('keydown', function(event) {
     if (event.keyCode === 16) {
@@ -183,15 +186,15 @@ function moveObject() {
 }
 
 function startBall() {
-    ball.x = 175;
-    ball.y = 325;
-    let way = randomInteger(-2, 2);
-    if (way === 0) {
-        startBall();
-    }
+    ball.x = 325;
+    ball.y = 175;
 
-    ball.speedX = 3;
-    ball.speedY = way * 2;
+    let random = randomInteger(-1, 1);
+    if (random === 0) {
+        random = -1;
+    }
+    ball.speedX = random * 5;
+    ball.speedY = random * 5;
 };
 
 function randomInteger(min, max) {
@@ -202,6 +205,9 @@ function randomInteger(min, max) {
 let timerId;
 
 function startGame() {
+    stopGame();
+    racquet1.y = 125;
+    racquet2.y = 125;
     timerId = setInterval(moveObject, 25);
 };
 

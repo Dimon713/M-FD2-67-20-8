@@ -1,5 +1,3 @@
-export
-
 function createClock() {
     let svg = document.getElementById('clock');
     let widthSvg = parseFloat(svg.getAttribute('width'));
