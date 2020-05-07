@@ -18,8 +18,6 @@ function qeepEqual(a, b) {
     return true;
 }
 
-
-
 let x = {
     value: {
         a: undefined,
@@ -42,8 +40,6 @@ let y = {
 
 console.log(qeepEqual(x, y));
 console.log(qeepEqual([1, 2, [1, 2]], [1, 2, [1, 2, 3]]));
-
-
 
 function bbb(x) {
 
